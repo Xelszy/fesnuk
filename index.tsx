@@ -133,6 +133,18 @@ userInput.addEventListener('keydown', async (e: KeyboardEvent) => {
   }
 });
 
+
+
+const enterButton = document.querySelector('#enterButton') as HTMLButtonElement;
+enterButton.addEventListener('click', async () => {
+  const message = userInput.value.trim();
+  if (message) {
+    await generate(message);
+    userInput.value = '';
+  }
+});
+
+
 const examples = document.querySelectorAll('#examples li');
 examples.forEach((li) =>
   li.addEventListener('click', async () => {

@@ -125,13 +125,6 @@ async function generate(message: string) {
   userInput.focus();
 }
 
-userInput.addEventListener('keydown', async (e: KeyboardEvent) => {
-  if (e.code === 'Enter') {
-    e.preventDefault();
-    const message = userInput.value;
-    await generate(message);
-  }
-});
 
 
 

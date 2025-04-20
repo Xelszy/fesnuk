@@ -18,6 +18,7 @@ Use a fun story of President of Indonesia, Prabowo, mark zuckeberg, elon musk, k
 I mean the random figure is for image, not explain.
 Search informatiin about before answer.
 Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
+DON'T REPEATING SENTENCES FOR IMAGE. Make different for every single image.
 Generate a cute, minimal illustration for each sentence with black ink. 
 but most illustration is just black and ink on white background.
 No commentary, just begin your explanation.

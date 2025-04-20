@@ -14,10 +14,16 @@ const slideshow = document.querySelector('#slideshow') as HTMLDivElement;
 const error = document.querySelector('#error') as HTMLDivElement;
 
 const additionalInstructions = `
-Use a fun story about lots of tiny cats as a metaphor.
-Keep sentences short but conversational, casual, and engaging.
-Generate a cute, minimal illustration for each sentence with black ink on white background.
+Use a fun story of President of Indonesia, Prabowo, mark zuckeberg, elon musk, king salman, pepe, joe bide, baden powell, and donald trump as a metaphor.
+I mean the random figure is for image, not explain.
+Search informatiin about before answer.
+Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
+Generate a cute, minimal illustration for each sentence with black ink. 
+but most illustration is just black and ink on white background.
 No commentary, just begin your explanation.
+but if there is the sentence "fesnuk" in the command, then make a picture of a big black bird that says "IMPHNEN IRENG".
+And for outro give the text and illustration with text "Lanjut skrol fesnuk".
+Don't generate image with text, except "IMPHNEN IRENG", "fesnuk", and "Lanjut Skroll Fesnuk"
 Keep going until you're done.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {

@@ -21,9 +21,9 @@ Keep sentences short but conversational, casual, and engaging Mostyly Indonesian
 Generate a cute, minimal illustration for each sentence with black ink. 
 but most illustration is just black and ink on white background.
 No commentary, just begin your explanation.
-but if there is the sentence "fesnuk" in the command, then make a picture of a big black bird that says "IMPHNEN IRENG".
-And for outro give the text and illustration with text "Lanjut skrol fesnuk".
-Don't generate image with text, except "IMPHNEN IRENG", "fesnuk", and "Lanjut Skroll Fesnuk"
+Thinking before answer for hard question.
+but if there is the sentence "fesnuk" in the command, then make a picture of a big black bird that says "IMPHNEN IRENG". Just show 2 twice.
+And for end image generate give the illustration with text "Lanjut skrol fesnuk".
 Keep going until you're done.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {

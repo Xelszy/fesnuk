@@ -3,19 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import {GoogleGenAI} from '@google/genai';
-import {marked} from 'marked';
+import { GoogleGenAI } from '@google/genai';
+import { marked } from 'marked';
 
-const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
-
-
-const chat = ai.chats.create({
-  model: 'gemini-2.0-flash-exp',
-  config: {
-    responseModalities: ['TEXT', 'IMAGE'],
-  },
-  history: [],
-});
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const userInput = document.querySelector('#input') as HTMLTextAreaElement;
 const modelOutput = document.querySelector('#output') as HTMLDivElement;
@@ -23,16 +14,10 @@ const slideshow = document.querySelector('#slideshow') as HTMLDivElement;
 const error = document.querySelector('#error') as HTMLDivElement;
 
 const additionalInstructions = `
-Use a fun story of President of Indonesia, Prabowo, mark zuckeberg, elon musk, king salman, pepe, joe bide, baden powell, and donald trump as a metaphor.
-I mean the random figure is for image, not explain.
-Search informatiin about before answer.
-Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
-Generate a cute, minimal illustration for each sentence with black ink. 
-but most illustration is just black and ink on white background.
+Use a fun story about lots of tiny cats as a metaphor.
+Keep sentences short but conversational, casual, and engaging.
+Generate a cute, minimal illustration for each sentence with black ink on white background.
 No commentary, just begin your explanation.
-but if there is the sentence "fesnuk" in the command, then make a picture of a big black bird that says "IMPHNEN IRENG".
-And for outro give the text and illustration with text "Lanjut skrol fesnuk".
-Don't generate image with text, except "IMPHNEN IRENG", "fesnuk", and "Lanjut Skroll Fesnuk"
 Keep going until you're done.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {
@@ -49,10 +34,11 @@ function parseError(error: string) {
   const regex = /{"error":(.*)}/gm;
   const m = regex.exec(error);
   try {
+    if (!m || !m[1]) return error;
     const e = m[1];
     const err = JSON.parse(e);
     return err.message;
-  } catch (e) {
+  } catch {
     return error;
   }
 }
@@ -60,7 +46,14 @@ function parseError(error: string) {
 async function generate(message: string) {
   userInput.disabled = true;
 
-  chat.history.length = 0;
+  // Bikin chat baru tiap kali generate, supaya tidak akses 'history' yg private
+  const chat = ai.chats.create({
+    model: 'gemini-2.0-flash-exp',
+    config: {
+      responseModalities: ['TEXT', 'IMAGE'],
+    },
+  });
+
   modelOutput.innerHTML = '';
   slideshow.innerHTML = '';
   error.innerHTML = '';
@@ -78,10 +71,12 @@ async function generate(message: string) {
     });
 
     let text = '';
-    let img = null;
+    let img: HTMLImageElement | null = null;
 
     for await (const chunk of result) {
+      if (!chunk.candidates) continue;
       for (const candidate of chunk.candidates) {
+        if (!candidate.content) continue;
         for (const part of candidate.content.parts ?? []) {
           if (part.text) {
             text += part.text;
@@ -94,7 +89,7 @@ async function generate(message: string) {
               } else {
                 console.log('no data', chunk);
               }
-            } catch (e) {
+            } catch {
               console.log('no data', chunk);
             }
           }
@@ -107,46 +102,36 @@ async function generate(message: string) {
         }
       }
     }
+
     if (img) {
       await addSlide(text, img);
       slideshow.removeAttribute('hidden');
       text = '';
     }
+
   } catch (e) {
-    const msg = parseError(e);
+    const msg = parseError(e as string);
     error.innerHTML = `Something went wrong: ${msg}`;
     error.removeAttribute('hidden');
   }
+
   userInput.disabled = false;
   userInput.focus();
 }
 
-userInput.addEventListener('keydown', async (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault(); // Biar ga bikin newline
-    const message = userInput.value.trim();
-    if (message) {
-      await generate(message);
-      userInput.value = '';
-    }
-  }
-});
-
-
-
-
-const enterButton = document.querySelector('#enterButton') as HTMLButtonElement;
-enterButton.addEventListener('click', async () => {
-  const message = userInput.value.trim();
-  if (message) {
+userInput.addEventListener('keydown', async (e: KeyboardEvent) => {
+  if (e.code === 'Enter') {
+    e.preventDefault();
+    const message = userInput.value;
     await generate(message);
-    userInput.value = '';
   }
 });
 
 const examples = document.querySelectorAll('#examples li');
 examples.forEach((li) =>
-  li.addEventListener('click', async (e) => {
-    await generate(li.textContent);
+  li.addEventListener('click', async () => {
+    if (li.textContent) {
+      await generate(li.textContent);
+    }
   }),
 );

@@ -1,0 +1,172 @@
+
+
+<script type="importmap">
+  
+  {
+    "imports": {
+      "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+      "marked": "https://esm.sh/marked@^15.0.7"
+    }
+  }
+
+
+  
+</script>
+
+
+
+<div class="container">
+  <h1>Hey, explain this.</h1>
+  <p>Contoh:</p>
+  <ul id="examples">
+    <li>Jelaskan uang 700 Triliun itu seberapa.</li>
+    <li>Jelaskan apa itu PKI</li>
+    <li>Jelaskan Carl Max jika masih hidup di 2025</li>
+  </ul>
+  <p>Ketik sendiri:</p>
+  <textarea id="input" placeholder="Enter kalau udah."></textarea>
+  <button id="enterButton">Enter</button>
+  <div id="output"></div>
+  <div id="error" hidden></div>
+  <div id="slideshow" hidden></div>
+</div>
+<link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
+<script>
+  setInterval(() => {
+    const before = new Date();
+  
+    const after = new Date();
+    if (after - before > 100) {
+      document.body.innerHTML = ""; // Kosongkan halaman
+      alert("Ireng");
+    }
+  }, 1000);
+
+  setTimeout(() => {
+  console.clear();
+  console.log('%cIRENG, i mean WARNING', 'font-size:30px; color:yellow; background:red; font-weight:bold; padding:10px;');
+  console.log('%cTampering with this console will be reported to the firefighter.', 'color:white; background:black; padding:4px; font-size:16px;');
+  console.log('%c...or maybe not. But hey, stop snooping!', 'color:gray; font-style:italic;');
+}, 2000);
+
+if (window.console) {
+  const messages = [
+    {
+      text: ' Console locked.',
+      style: 'font-size:30px; font-weight:bold; color:red;'
+    },
+    {
+      text: '🕵️ Unauthorized activity detected...',
+      style: 'font-size:18px; color:orange;'
+    },
+    {
+      text: ' Tracking keystrokes...',
+      style: 'font-size:16px; color:yellow;'
+    },
+    {
+      text: ' Uploading data to 127.0.0.1... just kidding 😏',
+      style: 'font-size:14px; color:lightgreen; font-style:italic;'
+    },
+    {
+      text: ' Stay curious, but don’t break things.',
+      style: 'font-size:16px; color:cyan; font-weight:bold;'
+    },
+    {
+      text: ' Initiating self-destruct in...',
+      style: 'font-size:18px; color:red;'
+    },
+  ];
+
+  let counter = 3;
+
+ 
+  function typeWriter(text, style, delay = 50) {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= text.length) {
+        console.log(`%c${text.substring(0, i)}`, style);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, delay);
+  }
+
+ 
+  setTimeout(async () => {
+    console.clear();
+    for (const msg of messages) {
+      typeWriter(msg.text, msg.style);
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+    }
+
+    const countdown = setInterval(() => {
+      console.log(`%c ${counter}...`, 'font-size:22px; color:hotpink; font-weight:bold;');
+      counter--;
+      if (counter === 0) {
+        console.log('%c Just kidding. Stay safe, dev detective.', 'font-size:20px; color:lime;');
+        clearInterval(countdown);
+      }
+    }, 1000);
+  }, 1000);
+}
+
+
+
+const trollComment = document.createComment(
+  "Ngapain ngab 'bWluZ2dpciBsbyBoZWtlbCBnYWR1bmdhbiwgc2FsYWggbGF3YW4gbHV3IA==' 😉"
+);
+document.body.appendChild(trollComment);
+
+  </script>
+
+  
+  <script>
+
+
+
+
+document.getElementById("enterButton").addEventListener("click", async function() {
+  const message = document.getElementById("input").value.trim();
+  if (message) {
+    await generate(message); // Panggil fungsi generate yang sama dengan keyboard Enter
+    document.getElementById("input").value = ""; // Reset input
+  }
+});
+
+
+
+
+(function () {
+  const redirectToRickroll = () => {
+    window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
+  };
+
+  const devtools = {
+    open: false,
+    threshold: 160,
+    emitEvent: function (status) {
+      if (status === "open" && !this.open) {
+        this.open = true;
+        redirectToRickroll(); 
+      } else if (status === "close") {
+        this.open = false;
+      }
+    }
+  };
+
+  const detectDevTools = () => {
+    const widthThreshold = window.outerWidth - window.innerWidth > devtools.threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > devtools.threshold;
+
+    if (widthThreshold || heightThreshold) {
+      devtools.emitEvent("open");
+    } else {
+      devtools.emitEvent("close");
+    }
+  };
+
+  setInterval(detectDevTools, 500);
+})();
+</script>

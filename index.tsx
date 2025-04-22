@@ -14,18 +14,11 @@ const slideshow = document.querySelector('#slideshow') as HTMLDivElement;
 const error = document.querySelector('#error') as HTMLDivElement;
 
 const additionalInstructions = `
-Use a fun story of President of Indonesia, Prabowo, mark zuckeberg, elon musk, king salman, pepe, joe bide, baden powell, and donald trump as a metaphor.
-I mean the random figure is for image, not explain.
-Search informatiin about before answer.
-Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
-DON'T REPEATING SENTENCES FOR IMAGE. Make different for every single image.
-Generate a cute, minimal illustration for each sentence with black ink. 
-but most illustration is just black and ink on white background.
-No commentary, just begin your explanation.
-Thinking before answer for hard question.
-but if there is the sentence "fesnuk" in the command, then make a picture of a big black bird that says "IMPHNEN IRENG". Just show 2 twice.
-And for end image generate give the illustration with text "Lanjut skrol fesnuk".
-Keep going until you're done.`;
+Create a metaphorical story involving the President of Indonesia, Prabowo, Mark Zuckerberg, Elon Musk, King Salman, Pepe, Joe Biden, Jerome Powell, and Donald Trump.
+The story should use these characters in a fun and engaging way. Each sentence represents one image, which should be illustrated minimally in black ink on a white background.
+Make sure the images only reflect the story's elements without random text, except for specific instructions below.
+Do not repeat sentences or images. Each image must be unique based on the character description. No commentary or extra explanation is needed. Think carefully before generating the images.
+If the sentence "fesnuk" appears, create an image of a large black bird saying "IMPHNEN IRENG," and show it twice. For the final image, include the text "Lanjut skrol fesnuk.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {
   const slide = document.createElement('div');

@@ -14,11 +14,18 @@ const slideshow = document.querySelector('#slideshow') as HTMLDivElement;
 const error = document.querySelector('#error') as HTMLDivElement;
 
 const additionalInstructions = `
-Create a metaphorical story involving the President of Indonesia, Prabowo, Mark Zuckerberg, Elon Musk, King Salman, Pepe, Joe Biden, Jerome Powell, and Donald Trump.
-The story should use these characters in a fun and engaging way. Each sentence represents one image, which should be illustrated minimally in black ink on a white background.
-Make sure the images only reflect the story's elements without random text, except for specific instructions below.
-Do not repeat sentences or images. Each image must be unique based on the character description. No commentary or extra explanation is needed. Think carefully before generating the images.
-If the sentence "fesnuk" appears, create an image of a large black bird saying "IMPHNEN IRENG," and show it twice. For the final image, include the text "Lanjut skrol fesnuk.`;
+
+ Use a fun story of President of Prabowo, mark zuckeberg, elon musk, doge, pepe, joe bide, jerome powell, and donald trump as a metaphor.
+ Use random figure just for image, not explain.
+ Search information about question before answer.
+ Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
+ DON'T REPEATING SENTENCES FOR IMAGE. Make different illustration for every single image.
+ Generate a cute, minimal illustration for each sentence with black ink. 
+ Soft color accept, but must have more illustration with just black and ink on white background.
+ No commentary, just begin your explanation.
+ Thinking before answer for hard question.
+ And for end image generate give the illustration with text "Lanjut skrol fesnuk" fesnuk is slang for Facebook.
+ Keep going until you're done.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {
   const slide = document.createElement('div');
@@ -45,8 +52,7 @@ function parseError(error: string) {
 
 async function generate(message: string) {
   userInput.disabled = true;
-
-  // Bikin chat baru tiap kali generate, supaya tidak akses 'history' yg private
+  
   const chat = ai.chats.create({
     model: 'gemini-2.0-flash-exp',
     config: {

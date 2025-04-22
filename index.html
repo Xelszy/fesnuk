@@ -1,13 +1,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <script type="importmap">
+  
   {
     "imports": {
       "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
       "marked": "https://esm.sh/marked@^15.0.7"
     }
   }
+
 </script>
+
+
 
 <div class="container">
   <h1>Hey, explain this.</h1>
@@ -28,215 +33,149 @@
 <link rel="stylesheet" href="index.css">
 <script src="index.tsx" type="module"></script>
 <script>
-  // Modified debug timer - will only run if not on mobile
-  if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-    setInterval(() => {
-      const before = new Date();
-      const after = new Date();
-      if (after - before > 100) {
-        document.body.innerHTML = ""; // Kosongkan halaman
-        alert("Ireng");
-      }
-    }, 1000);
-  }
+  setInterval(() => {
+    const before = new Date();
+  
+    const after = new Date();
+    if (after - before > 100) {
+      document.body.innerHTML = ""; // Kosongkan halaman
+      alert("Ireng");
+    }
+  }, 1000);
 
   setTimeout(() => {
+  console.clear();
+  console.log('%cIRENG, i mean WARNING', 'font-size:30px; color:yellow; background:red; font-weight:bold; padding:10px;');
+  console.log('%cTampering with this console will be reported to the firefighter.', 'color:white; background:black; padding:4px; font-size:16px;');
+  console.log('%c...or maybe not. But hey, stop snooping!', 'color:gray; font-style:italic;');
+}, 2000);
+
+if (window.console) {
+  const messages = [
+    {
+      text: ' Console locked.',
+      style: 'font-size:30px; font-weight:bold; color:red;'
+    },
+    {
+      text: '🕵️ Unauthorized activity detected...',
+      style: 'font-size:18px; color:orange;'
+    },
+    {
+      text: ' Tracking keystrokes...',
+      style: 'font-size:16px; color:yellow;'
+    },
+    {
+      text: ' Uploading data to 127.0.0.1... just kidding 😏',
+      style: 'font-size:14px; color:lightgreen; font-style:italic;'
+    },
+    {
+      text: ' Stay curious, but don’t break things.',
+      style: 'font-size:16px; color:cyan; font-weight:bold;'
+    },
+    {
+      text: ' Initiating self-destruct in...',
+      style: 'font-size:18px; color:red;'
+    },
+  ];
+
+  let counter = 3;
+
+ 
+  function typeWriter(text, style, delay = 50) {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= text.length) {
+        console.log(`%c${text.substring(0, i)}`, style);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, delay);
+  }
+
+ 
+  setTimeout(async () => {
     console.clear();
-    console.log('%cIRENG, i mean WARNING', 'font-size:30px; color:yellow; background:red; font-weight:bold; padding:10px;');
-    console.log('%cTampering with this console will be reported to the firefighter.', 'color:white; background:black; padding:4px; font-size:16px;');
-    console.log('%c...or maybe not. But hey, stop snooping!', 'color:gray; font-style:italic;');
-  }, 2000);
-
-  if (window.console) {
-    const messages = [
-      {
-        text: ' Console locked.',
-        style: 'font-size:30px; font-weight:bold; color:red;'
-      },
-      {
-        text: '🕵️ Unauthorized activity detected...',
-        style: 'font-size:18px; color:orange;'
-      },
-      {
-        text: ' Tracking keystrokes...',
-        style: 'font-size:16px; color:yellow;'
-      },
-      {
-        text: ' Uploading data to 127.0.0.1... just kidding 😏',
-        style: 'font-size:14px; color:lightgreen; font-style:italic;'
-      },
-      {
-        text: ' Stay curious, but don't break things.',
-        style: 'font-size:16px; color:cyan; font-weight:bold;'
-      },
-      {
-        text: ' Initiating self-destruct in...',
-        style: 'font-size:18px; color:red;'
-      },
-    ];
-
-    let counter = 3;
-
-    function typeWriter(text, style, delay = 50) {
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i <= text.length) {
-          console.log(`%c${text.substring(0, i)}`, style);
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, delay);
+    for (const msg of messages) {
+      typeWriter(msg.text, msg.style);
+      await new Promise((resolve) => setTimeout(resolve, 1200));
     }
 
-    setTimeout(async () => {
-      console.clear();
-      for (const msg of messages) {
-        typeWriter(msg.text, msg.style);
-        await new Promise((resolve) => setTimeout(resolve, 1200));
+    const countdown = setInterval(() => {
+      console.log(`%c ${counter}...`, 'font-size:22px; color:hotpink; font-weight:bold;');
+      counter--;
+      if (counter === 0) {
+        console.log('%c Just kidding. Stay safe, dev detective.', 'font-size:20px; color:lime;');
+        clearInterval(countdown);
       }
-
-      const countdown = setInterval(() => {
-        console.log(`%c ${counter}...`, 'font-size:22px; color:hotpink; font-weight:bold;');
-        counter--;
-        if (counter === 0) {
-          console.log('%c Just kidding. Stay safe, dev detective.', 'font-size:20px; color:lime;');
-          clearInterval(countdown);
-        }
-      }, 1000);
     }, 1000);
-  }
+  }, 1000);
+}
 
-  const trollComment = document.createComment(
-    "Ngapain ngab 'bWluZ2dpciBsbyBoZWtlbCBnYWR1bmdhbiwgc2FsYWggbGF3YW4gbHV3IA==' 😉"
-  );
-  document.body.appendChild(trollComment);
-</script>
 
-<script>
-  // Centralized function to handle input processing with mobile-specific accommodations
-  async function processInput() {
-    const inputElement = document.getElementById("input");
-    const message = inputElement.value.trim();
-    const outputElement = document.getElementById("output");
-    const errorElement = document.getElementById("error");
-    
+
+const trollComment = document.createComment(
+  "Ngapain ngab 'bWluZ2dpciBsbyBoZWtlbCBnYWR1bmdhbiwgc2FsYWggbGF3YW4gbHV3IA==' 😉"
+);
+document.body.appendChild(trollComment);
+
+  </script>
+
+  
+  <script>
+
+document.getElementById("input").addEventListener("keydown", function(event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    const message = this.value.trim();
     if (message) {
-      // Store scroll position
-      const scrollPosition = window.scrollY;
-      
-      // Visual feedback that processing is happening
-      const enterButton = document.getElementById("enterButton");
-      const originalButtonText = enterButton.textContent;
-      enterButton.textContent = "Processing...";
-      enterButton.disabled = true;
-      inputElement.disabled = true;
-      
-      try {
-        // Handle potential focus issues on mobile by actively blurring
-        inputElement.blur();
-        
-        // Show loading indicator in output area
-        if (!outputElement.querySelector('.loading-indicator')) {
-          const loadingIndicator = document.createElement('div');
-          loadingIndicator.className = 'loading-indicator';
-          loadingIndicator.textContent = 'Processing...';
-          outputElement.appendChild(loadingIndicator);
-        }
-        
-        // Call your generate function
-        await generate(message);
-        
-        // Hide error if it was previously shown
-        errorElement.hidden = true;
-      } catch (error) {
-        console.error("Error processing request:", error);
-        errorElement.textContent = "Error processing your request. Please try again.";
-        errorElement.hidden = false;
-        
-        // Remove loading indicator if exists
-        const loadingIndicator = outputElement.querySelector('.loading-indicator');
-        if (loadingIndicator) loadingIndicator.remove();
-      } finally {
-        // Cleanup
-        inputElement.value = "";
-        enterButton.textContent = originalButtonText;
-        enterButton.disabled = false;
-        inputElement.disabled = false;
-        
-        // Remove loading indicator if exists
-        const loadingIndicator = outputElement.querySelector('.loading-indicator');
-        if (loadingIndicator) loadingIndicator.remove();
-        
-        // For mobile devices, retain scroll position and don't focus
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          // Set timeout to ensure the browser doesn't immediately try to adjust scroll
-          setTimeout(() => {
-            window.scrollTo(0, scrollPosition);
-          }, 100);
-        } else {
-          // On desktop, can re-focus on input
-          inputElement.focus();
-        }
+      generate(message).then(() => {
+        this.value = "";
+      });
+    }
+  }
+});
+
+document.getElementById("enterButton").addEventListener("click", function() {
+  const message = document.getElementById("input").value.trim();
+  if (message) {
+    generate(message).then(() => {
+      document.getElementById("input").value = "";
+    });
+  }
+});
+
+
+
+(function () {
+  const redirectToRickroll = () => {
+    window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
+  };
+
+  const devtools = {
+    open: false,
+    threshold: 160,
+    emitEvent: function (status) {
+      if (status === "open" && !this.open) {
+        this.open = true;
+        redirectToRickroll(); 
+      } else if (status === "close") {
+        this.open = false;
       }
     }
-  }
+  };
 
-  // Add event listener for textarea - handles Enter key properly
-  document.getElementById("input").addEventListener("keydown", function(event) {
-    // Check if it's Enter without Shift (to allow for multi-line input with Shift+Enter)
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault(); // Prevent default action (new line in textarea)
-      processInput();
+  const detectDevTools = () => {
+    const widthThreshold = window.outerWidth - window.innerWidth > devtools.threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > devtools.threshold;
+
+    if (widthThreshold || heightThreshold) {
+      devtools.emitEvent("open");
+    } else {
+      devtools.emitEvent("close");
     }
-  });
+  };
 
-  // Button click handler
-  document.getElementById("enterButton").addEventListener("click", function() {
-    processInput();
-  });
-
-  // Optional: Add example click functionality
-  document.querySelectorAll("#examples li").forEach(example => {
-    example.addEventListener("click", function() {
-      const inputElement = document.getElementById("input");
-      inputElement.value = this.textContent;
-      inputElement.focus();
-    });
-  });
-
-  // DevTools detection (modified to not run on mobile)
-  if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-    (function () {
-      const redirectToRickroll = () => {
-        window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
-      };
-
-      const devtools = {
-        open: false,
-        threshold: 160,
-        emitEvent: function (status) {
-          if (status === "open" && !this.open) {
-            this.open = true;
-            redirectToRickroll(); 
-          } else if (status === "close") {
-            this.open = false;
-          }
-        }
-      };
-
-      const detectDevTools = () => {
-        const widthThreshold = window.outerWidth - window.innerWidth > devtools.threshold;
-        const heightThreshold = window.outerHeight - window.innerHeight > devtools.threshold;
-
-        if (widthThreshold || heightThreshold) {
-          devtools.emitEvent("open");
-        } else {
-          devtools.emitEvent("close");
-        }
-      };
-
-      setInterval(detectDevTools, 500);
-    })();
-  }
+  setInterval(detectDevTools, 500);
+})();
 </script>

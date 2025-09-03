@@ -15,7 +15,7 @@ const error = document.querySelector('#error') as HTMLDivElement;
 
 const additionalInstructions = `
 
- Use a fun story of President of Prabowo, mark zuckeberg, elon musk, doge, pepe, joe bide, jerome powell, and donald trump as a metaphor.
+ Use a fun story of Indonesia character as a metaphor.
  Use random figure just for image, not explain.
  Search information about question before answer.
  Keep sentences short but conversational, casual, and engaging Mostyly Indonesian languange.
@@ -24,7 +24,6 @@ const additionalInstructions = `
  Soft color accept, but must have more illustration with just black and ink on white background.
  No commentary, just begin your explanation.
  Thinking before answer for hard question.
- And for end image generate give the illustration with text "Lanjut skrol fesnuk" fesnuk is slang for Facebook.
  Keep going until you're done.`;
 
 async function addSlide(text: string, image: HTMLImageElement) {
